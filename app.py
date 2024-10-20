@@ -1,6 +1,7 @@
 import eurostat
 import json
 
+from PIL import Image
 import plotly.express as px
 import matplotlib.pyplot as plt
 import streamlit as st
@@ -84,6 +85,44 @@ with st.spinner("Please wait, loading data..."):
     # Load the data from the cached function
     GVA_data, Employment_data, Labour_demand_ICT_data = load_data()
     info_print("All data has been loaded")
+
+def load_team_data():
+    with open('data/team.json', 'r') as f:
+        return json.load(f)
+    
+def show_team(team):
+    # Number of team members
+    num_members = len(team)
+    
+    # Split into two columns
+    col1, col2 = st.columns(2)
+
+    # Function to resize the image by height
+    def resize_image(image_path, target_height):
+        img = Image.open(image_path)
+        aspect_ratio = img.width / img.height
+        new_width = int(target_height * aspect_ratio)
+        return img.resize((new_width, target_height))
+
+    # Loop through the team members and distribute them between the two columns
+    for i, member in enumerate(team):
+        # Assign first half of the team to column 1 and second half to column 2
+        with col1 if i % 2 == 0 else col2:
+            # Load image using st.image()
+            image_path = f"pictures/{member['picture']}"  # Update this if images are in a different folder
+            st.image(image_path, width=150)
+
+            # Use HTML and CSS for centered text and link
+            st.markdown(f"""
+                <div style="text-align: left;">
+                    <h4>{member['name']}</h4>
+                    <p>{member['role']}</p>
+                    <a href="{member['linkedin']}" style="color: yellow;" target="_blank">LinkedIn Page</a>
+                </div>
+            """, unsafe_allow_html=True)
+            st.write('')
+            st.write('')
+
 
 # Create an empty data frame to hold the hold data during transformation
 transformed_data = pd.DataFrame()
@@ -453,4 +492,9 @@ elif page == page4:
 
 
 elif page == page5:
-    st.title('Meet the team behind the Digital Transformation Potential Index')
+    st.markdown("""
+    <h1 style="text-align: center;">Meet the team behind the Digital Transformation Potential Index</h1>
+""", unsafe_allow_html=True)
+    st.write('')
+    team = load_team_data()
+    show_team(team)

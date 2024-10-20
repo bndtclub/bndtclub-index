@@ -1,0 +1,30 @@
+[
+    {
+        "name" : "Claudio Paliotta",
+        "role" : "Co-founder of The Digital and Business Transformation Club",
+        "picture" : "claudio.jpg",
+        "linkedin" : "https://www.linkedin.com/in/claudio-paliotta/"
+
+    },
+    {
+        "name" : "Giuseppe Zangari",
+        "role" : "Co-founder of The Digital and Business Transformation Club",
+        "picture" : "giuseppe.jpg",
+        "linkedin" : "https://www.linkedin.com/in/gzangari/"
+
+    },
+    {
+        "name" : "Paolo Maresca",
+        "role" : "Co-founder of The Digital and Business Transformation Club",
+        "picture" : "paolo.jpg",
+        "linkedin" : "https://www.linkedin.com/in/paolomaresca/"
+
+    },
+    {
+        "name" : "Tania Avloniti",
+        "role" : "Communication and marketing manager",
+        "picture" : "tania.png",
+        "linkedin" : "https://www.linkedin.com/in/tania-avloniti/"
+
+    }
+]
