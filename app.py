@@ -1,5 +1,3 @@
-import ternary
-import mpltern
 import eurostat
 import json
 
@@ -34,9 +32,10 @@ page1 = 'Home'
 page2 = "Intro: DTPI"
 page3 = "Overview of EU27 DTPI"
 page4 = "Zoom into EU27 and EU6 DTPI"
+page5 = "The DTPI Team"
 
 #st.title("Navigation")  # Title for the navigation bar
-page = st.radio('Select a page',[page1, page2, page3, page4], horizontal=True, label_visibility='hidden')
+page = st.radio('Select a page',[page1, page2, page3, page4, page5], horizontal=True, label_visibility='hidden')
 st.html(css['logo'])
 st.logo(image="logo/DTPI_logo_v5.png")
 
@@ -451,3 +450,7 @@ elif page == page4:
                         st.markdown(f'<details><summary>{year} {quarter}</summary>{highlights_per_year_quarter[year][quarter]}</details>', unsafe_allow_html=True, help=None)
              except KeyError:
                  error_print(f'{country} data is not available: no rendering')
+
+
+elif page == page5:
+    st.title('Meet the team behind the Digital Transformation Potential Index')
