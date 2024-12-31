@@ -40,11 +40,11 @@ jobs:
         cd ${{ env.REPO_NAMING }}
         pwd
         ls -la
-        echo ">>> 2. Docker DOWN"
+        echo ">>> 2. Docker BUILD"
+        docker build --no-cache -t ${{ env.CONTAINER_IMG_NAME }} .     # Build the updated Docker containers
+        echo ">>> 3. Docker DOWN"
         docker stop ${{ env.CONTAINER_RNT_NAME }}                      # Stop existing containers (if running)
         docker rm ${{ env.CONTAINER_RNT_NAME }}                        # Remove existing containers (if running)
-        echo ">>> 3. Docker BUILD"
-        docker build --no-cache -t ${{ env.CONTAINER_IMG_NAME }} .     # Build the updated Docker containers
         echo ">>> 4. Docker UP"
         docker-compose up -d ${{ env.CONTAINER_RNT_NAME }}             # Start the containers in detached mode
         cd ..
